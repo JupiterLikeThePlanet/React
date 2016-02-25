@@ -1,9 +1,9 @@
 // compile all our js and jsx and launch development server.
 module.exports = {
   //This is our configuration object
-  entry: '.main.js',
+  entry: './main.js',
   output: {
-    path: './'
+    path: './',
     //our bundled file
     filename: 'index.js'
   },
@@ -23,7 +23,6 @@ module.exports = {
         query: {
           presets: ['es2015', 'react']
         }
-
       }
     ]
   }
