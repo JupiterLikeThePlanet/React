@@ -74,14 +74,40 @@ import ReactDOM from 'react-dom';
 // props are meant to be static values or methods, STATE is a collection of values meant to be managed by the component itself
 
 
+// class App extends React.Component {
+//   // to initialize it, we use constructor
+//   constructor(){
+//     //use super to create context of 'this' [this is App in this context]
+//     super();
+//     this.state = {txt: 'this is the state txt'}
+//   }
+//   //custom method, takes event as argument
+//   update(e){
+//     this.setState({txt: e.target.value})
+
+//   }
+//   render(){
+//     return (
+//       <div>
+//       <input type="text"
+//         onChange={this.update.bind(this)} />
+//       <h1>{this.state.txt}</h1>
+//       </div>
+//     );
+//   }
+// }
+
+////////////////////////////////////////////////
+////6 Owner Ownee Relationship///////////////////
+
+// This is when one component renders another.  The parent component is called a composite component
+
 class App extends React.Component {
-  // to initialize it, we use constructor
   constructor(){
-    //use super to create context of 'this'
     super();
-    this.state = {txt: 'this is the state txt'}
+    this.state = {txt: ''}
+    this.update = this.update.bind(this)
   }
-  //custom method, takes event as argument
   update(e){
     this.setState({txt: e.target.value})
 
@@ -89,12 +115,26 @@ class App extends React.Component {
   render(){
     return (
       <div>
-      <input type="text"
-        onChange={this.update.bind(this)} />
-      <h1>{this.state.txt}</h1>
+        <Widget txt={this.state.txt} update={this.update}/>
+        <Widget txt={this.state.txt} update={this.update}/>
+        <Widget txt={this.state.txt} update={this.update}/>
+
       </div>
+
     );
   }
 }
+
+//create a new, stateless component here
+const Widget = (props) => {
+    return (
+      <div>
+        <input type="text"
+          onChange={props.update} />
+        <h1>{props.txt}</h1>
+      </div>
+    );
+  }
+
 
 export default App
