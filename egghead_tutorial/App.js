@@ -27,7 +27,6 @@ import ReactDOM from 'react-dom';
 // const App = () => <h1>Hello Eggheads</h1>
 
 /////////////////////////////////////////////////
-/////////////////////////////////////////////////
 // 3//// wrapping multiple elements in a single node////////////////////////////////////////////
 
 // class App extends React.Component{
@@ -89,9 +88,9 @@ import ReactDOM from 'react-dom';
 //   render(){
 //     return (
 //       <div>
-//       <input type="text"
-//         onChange={this.update.bind(this)} />
-//       <h1>{this.state.txt}</h1>
+          // <input type="text"
+          //   onChange={this.update.bind(this)} />
+          // <h1>{this.state.txt}</h1>
 //       </div>
 //     );
 //   }
@@ -102,39 +101,88 @@ import ReactDOM from 'react-dom';
 
 // This is when one component renders another.  The parent component is called a composite component
 
-class App extends React.Component {
+// class App extends React.Component {
+//   constructor(){
+//     super();
+//     this.state = {txt: ''}
+//     this.update = this.update.bind(this)
+//   }
+//   update(e){
+//     this.setState({txt: e.target.value})
+
+//   }
+//   render(){
+//     return (
+//       <div>
+//         <Widget txt={this.state.txt} update={this.update}/>
+//         <Widget txt={this.state.txt} update={this.update}/>
+//         <Widget txt={this.state.txt} update={this.update}/>
+//       </div>
+//     );
+//   }
+// }
+
+// //create a new, stateless component here
+// const Widget = (props) => {
+//     return (
+//       <div>
+//         <input type="text"
+//           onChange={props.update} />
+//         <h1>{props.txt}</h1>
+//       </div>
+//     );
+//   }
+
+////////////////////////////////////////////////
+////7 Using refs to access components///////////
+
+//refs are way to reference an instance of our component within our application
+//refs don't work with stateless function components
+
+class App extends React.Component{
   constructor(){
     super();
-    this.state = {txt: ''}
+    this.state = {
+      red: 0,
+      green:0,
+      blue:0
+    }
     this.update = this.update.bind(this)
   }
+// this requires 'import ReactDOM from 'react-dom';'
   update(e){
-    this.setState({txt: e.target.value})
-
+    this.setState({
+      red: ReactDOM.findDOMNode(this.refs.red).value,
+      green: ReactDOM.findDOMNode(this.refs.green).value,
+      blue: ReactDOM.findDOMNode(this.refs.blue).value
+    })
   }
   render(){
-    return (
+    return(
       <div>
-        <Widget txt={this.state.txt} update={this.update}/>
-        <Widget txt={this.state.txt} update={this.update}/>
-        <Widget txt={this.state.txt} update={this.update}/>
-
+        <Slider ref="red" update={this.update} />
+        {this.state.red}
+        <br />
+        <Slider ref="green" update={this.update} />
+        {this.state.green}
+        <br />
+        <Slider ref="blue" update={this.update} />
+        {this.state.blue}
+        <br />
       </div>
-
     );
   }
 }
 
-//create a new, stateless component here
-const Widget = (props) => {
-    return (
-      <div>
-        <input type="text"
-          onChange={props.update} />
-        <h1>{props.txt}</h1>
-      </div>
+class Slider extends React.Component {
+  render(){
+      return (
+        <input type="range"
+          min="0"
+          max="255"
+          onChange={this.props.update} />
     );
   }
-
+}
 
 export default App
