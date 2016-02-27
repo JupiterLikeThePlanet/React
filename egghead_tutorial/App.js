@@ -19,12 +19,17 @@ import ReactDOM from 'react-dom';
 //
 //   }
 // }
+
+// export default App
+
 ////////////////////////////////////////////////
 /////////////////////////////////////////////////
 
 //2/////create a stateless component function
 ///create a constant variable and set it = to a function
 // const App = () => <h1>Hello Eggheads</h1>
+
+// export default App
 
 /////////////////////////////////////////////////
 // 3//// wrapping multiple elements in a single node////////////////////////////////////////////
@@ -40,6 +45,9 @@ import ReactDOM from 'react-dom';
     // );
 //   }
 // }
+
+// export default App
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 
@@ -68,6 +76,8 @@ import ReactDOM from 'react-dom';
 //   document.getElementById('app')
 // );
 
+// export default App
+
 /////////////////////////////////////////////////
 ///5 State Basics ///////////////////////////////
 // props are meant to be static values or methods, STATE is a collection of values meant to be managed by the component itself
@@ -95,6 +105,8 @@ import ReactDOM from 'react-dom';
 //     );
 //   }
 // }
+
+// export default App
 
 ////////////////////////////////////////////////
 ////6 Owner Ownee Relationship///////////////////
@@ -132,6 +144,8 @@ import ReactDOM from 'react-dom';
 //       </div>
 //     );
 //   }
+
+// export default App
 
 ////////////////////////////////////////////////
 ////7 Using refs to access components///////////
@@ -187,24 +201,81 @@ import ReactDOM from 'react-dom';
 //   }
 // }
 
+// export default App
+
 ////////////////////////////////////////////////
 ////8 accessing child properties////////////////
 
 //use this.props.children to access innerhtml or nested component of another component
 
+// class App extends React.Component{
+//   render(){
+//     return <Button>I <Heart/> Login</Button>
+//   }
+// }
+
+// class Button extends React.Component{
+//   render(){
+//     return <button>{this.props.children}</button>
+//   }
+// }
+
+// const Heart = () => <span className="glyphicon glyphicon-heart"></span>
+
+// export default App
+
+////////////////////////////////////////////////
+////9 Component Lifecycle- Mounting Basics//////
+
+//MOUNTING and UNMOUNTING: when a component is added or removed from the DOM
+
 class App extends React.Component{
+  constructor(){
+    super();
+    this.state = {val: 0};
+    this.update = this.update.bind(this);
+  }
+  update(e){
+    this.setState({val: this.state.val +1})
+  }
+  //this is when component is fully prepped and guaranteed to make it to the DOM
+  componentWillMount(){
+    console.log('mounting!')
+  }
   render(){
-    return <Button>I <Heart/> Login</Button>
+    console.log('rendering!')
+    return <button onClick={this.update}>{this.state.val}</button>
+  }
+  //after our component has been placed in the DOM
+  componentDidMount(){
+    console.log('mounted!')
+  }
+  compontentWillUnmount(){
+    console.log('bye!');
   }
 }
 
-class Button extends React.Component{
+class Wrapper extends React.Component{
+  constructor(){
+    super();
+  }
+  mount(){
+    // this moundt class App or App Component to div id 'a'
+    ReactDOM.render(<App />, document.getElementById('a'))
+  }
+  unmount(){
+    ReactDOM.unmountComponentAtNode(document.getElementById('a'))
+  }
   render(){
-    return <button>{this.props.children}</button>
+    return (
+        <div>
+          <button onClick={this.mount.bind(this)}>Mount</button>
+          <button onClick={this.unmount.bind(this)}>UnMount</button>
+
+          <div id='a'></div>
+        </div>
+      )
   }
 }
 
-const Heart = () => <span className="glyphicon glyphicon-heart"></span>
-
-
-export default App
+export default Wrapper
