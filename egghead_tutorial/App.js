@@ -27,7 +27,6 @@ import ReactDOM from 'react-dom';
 // const App = () => <h1>Hello Eggheads</h1>
 
 /////////////////////////////////////////////////
-/////////////////////////////////////////////////
 // 3//// wrapping multiple elements in a single node////////////////////////////////////////////
 
 // class App extends React.Component{
@@ -74,27 +73,138 @@ import ReactDOM from 'react-dom';
 // props are meant to be static values or methods, STATE is a collection of values meant to be managed by the component itself
 
 
-class App extends React.Component {
-  // to initialize it, we use constructor
-  constructor(){
-    //use super to create context of 'this'
-    super();
-    this.state = {txt: 'this is the state txt'}
-  }
-  //custom method, takes event as argument
-  update(e){
-    this.setState({txt: e.target.value})
+// class App extends React.Component {
+//   // to initialize it, we use constructor
+//   constructor(){
+//     //use super to create context of 'this' [this is App in this context]
+//     super();
+//     this.state = {txt: 'this is the state txt'}
+//   }
+//   //custom method, takes event as argument
+//   update(e){
+//     this.setState({txt: e.target.value})
 
-  }
+//   }
+//   render(){
+//     return (
+//       <div>
+          // <input type="text"
+          //   onChange={this.update.bind(this)} />
+          // <h1>{this.state.txt}</h1>
+//       </div>
+//     );
+//   }
+// }
+
+////////////////////////////////////////////////
+////6 Owner Ownee Relationship///////////////////
+
+// This is when one component renders another.  The parent component is called a composite component
+
+// class App extends React.Component {
+//   constructor(){
+//     super();
+//     this.state = {txt: ''}
+//     this.update = this.update.bind(this)
+//   }
+//   update(e){
+//     this.setState({txt: e.target.value})
+
+//   }
+//   render(){
+//     return (
+//       <div>
+//         <Widget txt={this.state.txt} update={this.update}/>
+//         <Widget txt={this.state.txt} update={this.update}/>
+//         <Widget txt={this.state.txt} update={this.update}/>
+//       </div>
+//     );
+//   }
+// }
+
+// //create a new, stateless component here
+// const Widget = (props) => {
+//     return (
+//       <div>
+//         <input type="text"
+//           onChange={props.update} />
+//         <h1>{props.txt}</h1>
+//       </div>
+//     );
+//   }
+
+////////////////////////////////////////////////
+////7 Using refs to access components///////////
+
+//refs are way to reference an instance of our component within our application
+//refs don't work with stateless function components
+
+// class App extends React.Component{
+//   constructor(){
+//     super();
+//     this.state = {
+//       red: 0,
+//       green:0,
+//       blue:0
+//     }
+//     this.update = this.update.bind(this)
+//   }
+// // this requires 'import ReactDOM from 'react-dom';'
+//   update(e){
+//     this.setState({
+//       red: ReactDOM.findDOMNode(this.refs.red.refs.inp).value,
+//       green: ReactDOM.findDOMNode(this.refs.green.refs.inp).value,
+//       blue: ReactDOM.findDOMNode(this.refs.blue.refs.inp).value
+//     })
+//   }
+//   render(){
+//     return(
+//       <div>
+//         <Slider ref="red" update={this.update} />
+//         {this.state.red}
+//         <br />
+//         <Slider ref="green" update={this.update} />
+//         {this.state.green}
+//         <br />
+//         <Slider ref="blue" update={this.update} />
+//         {this.state.blue}
+//         <br />
+//       </div>
+//     );
+//   }
+// }
+
+// class Slider extends React.Component {
+//   render(){
+//       return (
+//         <div >
+//           <input ref="inp" type="range"
+//             min="0"
+//             max="255"
+//             onChange={this.props.update} />
+//         </div>
+//     );
+//   }
+// }
+
+////////////////////////////////////////////////
+////8 accessing child properties////////////////
+
+//use this.props.children to access innerhtml or nested component of another component
+
+class App extends React.Component{
   render(){
-    return (
-      <div>
-      <input type="text"
-        onChange={this.update.bind(this)} />
-      <h1>{this.state.txt}</h1>
-      </div>
-    );
+    return <Button>I <Heart/> Login</Button>
   }
 }
+
+class Button extends React.Component{
+  render(){
+    return <button>{this.props.children}</button>
+  }
+}
+
+const Heart = () => <span className="glyphicon glyphicon-heart"></span>
+
 
 export default App
