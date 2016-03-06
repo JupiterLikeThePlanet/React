@@ -283,57 +283,157 @@ import ReactDOM from 'react-dom';
 ////////////////////////////////////////////////
 ////10 Component Lifecycle- Mounting Uses//////
 
-class App extends React.Component{
-  constructor(){
-    super();
-    this.state = {val: 0};
-    this.update = this.update.bind(this);
+// class App extends React.Component{
+//   constructor(){
+//     super();
+//     this.state = {val: 0};
+//     this.update = this.update.bind(this);
+//   }
+//   update(e){
+//     this.setState({val: this.state.val + 1})
+//   }
+//   componentWillMount(){
+//     this.setState({m: 2})
+//   }
+//   render(){
+//     console.log('rendering')
+//     return(
+//         <button onClick={this.update}>
+//           {this.state.val * this.state.m}
+//         </button>
+//     )
+//   }
+//   componentDidMount(){
+//     console.log(ReactDOM.findDOMNode(this));
+//     this.inc = setInterval(this.update, 500);
+//   }
+//   componentWillUnmount(){
+//     clearInterval(this.inc)
+//   }
+// }
+
+// class Wrapper extends React.Component{
+//   constructor(){
+//     super();
+//   }
+//   mount(){
+//     ReactDOM.render(<App />, document.getElementById('a'));
+//   }
+//   unmount(){
+//     ReactDOM.unmountComponentAtNode(document.getElementById('a'));
+//   }
+//   render(){
+//     return (
+//         <div>
+//           <button onClick={this.mount.bind(this)}>Mount</button>
+//           <button onClick={this.unmount.bind(this)}>UnMount</button>
+//           <div id='a'></div>
+//         </div>
+//       )
+//   }
+// }
+
+// export default Wrapper
+
+////////////////////////////////////////////////
+////11 Component Lifecycle - Updating///////////
+
+//componentWillRecieveProps(nextProps)
+//shouldComponentUpdate(nextProps, nextState)
+//componentDidUpdate(prevProps, prevState)
+
+// state will change but will render when it meets requirements
+
+
+// class App extends React.Component{
+//   constructor(){
+//     super();
+//     this.update = this.update.bind(this);
+//     this.state = {increasing: false};
+//   }
+//   // Re rendering our entire component w/ new props
+//   update(){
+//     ReactDOM.render(
+//       <App val={this.props.val + 1} />,
+//       document.getElementById('app')
+//     );
+//   }
+//   //takes in the next properties that will be received by the component
+//   componentWillReceiveProps(nextProps){
+//     this.setState({increasing: nextProps.val > this.props.val})
+//   }
+//   //deciding if we want our component to update at all.  Here we are returning a boolean value
+//   shouldComponentUpdate(nextProps, nextState){
+//     return nextProps.val % 5 === 0;
+//   }
+//   render(){
+//     console.log(this.state.increasing)
+//     return (
+//       <button onClick={this.update}>
+//         {this.props.val}
+//       </button>
+//     )
+//   }
+//   componentDidUpdate(prevProps, prevState){
+//     console.log('prevProps', prevProps)
+//   }
+// }
+
+// App.defaultProps = {val: 0}
+
+// export default App
+
+////////////////////////////////////////////////
+////12 Component Lifecycle - HigherOrderComp////
+
+// give functionality to more than one component
+
+let Mixin = InnerComponent => class extends React.Component {
+    constructor(){
+      super();
+      this.state = {val: 0};
+      this.update = this.update.bind(this);
   }
-  update(e){
+  update(){
     this.setState({val: this.state.val + 1})
   }
   componentWillMount(){
-    this.setState({m: 2})
+    console.log('will mount');
   }
   render(){
-    console.log('rendering')
+    return (<InnerComponent
+    //props here
+    update = {this.update}
+    //spread operator to carry over from original component
+    {...this.state}
+    {...this.props} />)
+  }
+    componentDidMount(){
+    console.log('mounted');
+  }
+}
+
+//stateless component
+const Button = (props) => <button
+                            onClick={props.update}>{props.txt} - {props.val}</button>
+
+const Label = (props) => <label
+                          onMouseMove={props.update}>{props.txt} - {props.val}
+                         </label>
+
+let ButtonMixed = Mixin(Button)
+let LabelMixed = Mixin(Label)
+
+class App extends React.Component{
+  render(){
     return(
-        <button onClick={this.update}>
-          {this.state.val * this.state.m}
-        </button>
+      <div>
+        <ButtonMixed txt="Button" />
+        <LabelMixed txt="Label" />
+      </div>
     )
   }
-  componentDidMount(){
-    console.log(ReactDOM.findDOMNode(this));
-    this.inc = setInterval(this.update, 500);
-  }
-  componentWillUnmount(){
-    clearInterval(this.inc)
-  }
 }
 
-class Wrapper extends React.Component{
-  constructor(){
-    super();
-  }
-  mount(){
-    ReactDOM.render(<App />, document.getElementById('a'));
-  }
-  unmount(){
-    ReactDOM.unmountComponentAtNode(document.getElementById('a'));
-  }
-  render(){
-    return (
-        <div>
-          <button onClick={this.mount.bind(this)}>Mount</button>
-          <button onClick={this.unmount.bind(this)}>UnMount</button>
-          <div id='a'></div>
-        </div>
-      )
-  }
-}
 
-export default Wrapper
-
-////////////////////////////////////////////////
-////10 Component Lifecycle- Mounting Uses//////
+export default App
