@@ -229,6 +229,60 @@ import ReactDOM from 'react-dom';
 
 //MOUNTING and UNMOUNTING: when a component is added or removed from the DOM
 
+// class App extends React.Component{
+//   constructor(){
+//     super();
+//     this.state = {val: 0};
+//     this.update = this.update.bind(this);
+//   }
+//   update(e){
+//     this.setState({val: this.state.val +1})
+//   }
+//   //this is when component is fully prepped and guaranteed to make it to the DOM
+//   componentWillMount(){
+//     console.log('mounting!')
+//   }
+//   render(){
+//     console.log('rendering!')
+//     return <button onClick={this.update}>{this.state.val}</button>
+//   }
+//   //after our component has been placed in the DOM
+//   componentDidMount(){
+//     console.log('mounted!')
+//   }
+//   compontentWillUnmount(){
+//     console.log('bye!');
+//   }
+// }
+
+// class Wrapper extends React.Component{
+//   constructor(){
+//     super();
+//   }
+//   mount(){
+//     // this moundt class App or App Component to div id 'a'
+//     ReactDOM.render(<App />, document.getElementById('a'))
+//   }
+//   unmount(){
+//     ReactDOM.unmountComponentAtNode(document.getElementById('a'))
+//   }
+//   render(){
+//     return (
+//         <div>
+//           <button onClick={this.mount.bind(this)}>Mount</button>
+//           <button onClick={this.unmount.bind(this)}>UnMount</button>
+
+//           <div id='a'></div>
+//         </div>
+//       )
+//   }
+// }
+
+// export default Wrapper
+
+////////////////////////////////////////////////
+////10 Component Lifecycle- Mounting Uses//////
+
 class App extends React.Component{
   constructor(){
     super();
@@ -236,22 +290,25 @@ class App extends React.Component{
     this.update = this.update.bind(this);
   }
   update(e){
-    this.setState({val: this.state.val +1})
+    this.setState({val: this.state.val + 1})
   }
-  //this is when component is fully prepped and guaranteed to make it to the DOM
   componentWillMount(){
-    console.log('mounting!')
+    this.setState({m: 2})
   }
   render(){
-    console.log('rendering!')
-    return <button onClick={this.update}>{this.state.val}</button>
+    console.log('rendering')
+    return(
+        <button onClick={this.update}>
+          {this.state.val * this.state.m}
+        </button>
+    )
   }
-  //after our component has been placed in the DOM
   componentDidMount(){
-    console.log('mounted!')
+    console.log(ReactDOM.findDOMNode(this));
+    this.inc = setInterval(this.update, 500);
   }
-  compontentWillUnmount(){
-    console.log('bye!');
+  componentWillUnmount(){
+    clearInterval(this.inc)
   }
 }
 
@@ -260,18 +317,16 @@ class Wrapper extends React.Component{
     super();
   }
   mount(){
-    // this moundt class App or App Component to div id 'a'
-    ReactDOM.render(<App />, document.getElementById('a'))
+    ReactDOM.render(<App />, document.getElementById('a'));
   }
   unmount(){
-    ReactDOM.unmountComponentAtNode(document.getElementById('a'))
+    ReactDOM.unmountComponentAtNode(document.getElementById('a'));
   }
   render(){
     return (
         <div>
           <button onClick={this.mount.bind(this)}>Mount</button>
           <button onClick={this.unmount.bind(this)}>UnMount</button>
-
           <div id='a'></div>
         </div>
       )
@@ -279,3 +334,6 @@ class Wrapper extends React.Component{
 }
 
 export default Wrapper
+
+////////////////////////////////////////////////
+////10 Component Lifecycle- Mounting Uses//////
