@@ -1,39 +1,40 @@
 var React = require('react');
 var WeatherForm = require('WeatherForm');
 var WeatherMessage = require('WeatherMessage');
-
+var openWeatherMap = require('openWeatherMap');
 
 var Weather = React.createClass({
-    getDefaultProps: function () {
+    getInitialState: function () {
         return {
-            city: 'Oz',
-            degrees: '72',
-            message: 'Check out the weather'
+            location: 'Oz',
+            temp: '72'
+            // message: 'Check out the weather'
         };
     },
-    //
-    // getInitialState: function () {
-    //     return {
-    //             city: this.props.city,
-    //             degrees: this.props.degrees,
-    //             message: 'It is ' + {degrees} + ' degrees in ' + {city} +'.'
-    //     };
-    // },
 
-        //     var city = this.state.city;
-        //     var message = this.state.message
+    handleSearch: function (location) {
+        var that = this;
+        openWeatherMap.getTemp(location).then(function (temp){
+            that.setState({
+                location: location,
+                temp: temp
+            });
+        }, function (errorMessage) {
+            alert(errorMessage)
+        })
 
+    },
 
     render: function () {
-            var city = this.props.city;
-            var message = this.props.message
+            var location = this.state.location;
+            var temp = this.state.temp
         return (
             <div>
                 <h2>Check out some Weather</h2>
                 <br/>
-                <WeatherForm/>
+                <WeatherForm onSearch={this.handleSearch} location={location}/>
                 <br/>
-                <WeatherMessage city={city} message={message}/>
+                <WeatherMessage location={location} temp={temp}/>
             </div>
         );
     }
