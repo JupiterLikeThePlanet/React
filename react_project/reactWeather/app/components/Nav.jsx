@@ -18,13 +18,26 @@ var {Link, IndexLink} = require('react-router');
 
 var Nav = () => {
     return (
-        <div>
-            <h3>nav bar here</h3>
-            <IndexLink to="/" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>Your Weather</IndexLink>
-            <br/>
-            <Link to="about" activeClassName="active" activeStyle={{fontWeight: 'bold'}}> Our About Page </Link>
-            <br/>
-            <Link to="examples" activeClassName="active" activeStyle={{fontWeight: 'bold'}}> The Examples Page </Link>
+        <div className="top-bar">
+            <div className="top-bar-left">
+                <ul className="menu">
+                    <li className="menu-text">::React Weather App::</li>
+                    <li>
+                        <IndexLink to="/" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>Your Weather</IndexLink>
+                    </li>
+
+                    <li>
+                        <Link to="about" activeClassName="active" activeStyle={{fontWeight: 'bold'}}> Our About Page </Link>
+                     </li>
+
+                    <li>
+                        <Link to="examples" activeClassName="active" activeStyle={{fontWeight: 'bold'}}> The Examples Page </Link>
+                    </li>
+
+                </ul>
+
+
+            </div>
         </div>
     );
 }
