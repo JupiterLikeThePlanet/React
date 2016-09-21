@@ -3,18 +3,28 @@ var React = require('React');
 
 var ErrorModal = React.createClass({
 
+    getDefaultProps: function () {
+        return {
+            title: 'Error'
+        };
+    },
+    propTypes: {
+        title: React.PropTypes.string,
+        message: React.PropTypes.string.isRequired
+    },
+
     componentDidMount: function () {
         var modal = new Foundation.Reveal($("#error-modal"));
-        console.log('component did mount')
         modal.open();
     },
 
     render: function() {
+        var {title, message} = this.props;
         return (
             <div id="error-modal" className="reveal tiny text-center" data-reveal="">
-                <h4>No can do!</h4>
+                <h4>{title}</h4>
 
-                <p>It seems we cannot find what you are looking for</p>
+                <p>{message}</p>
 
                 <p>
                     <button className="button hollow" data-close="">
