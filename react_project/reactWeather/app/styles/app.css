@@ -1,0 +1,48 @@
+body {
+    background-color: #1ce3a1;
+}
+
+.menu-text, .top-bar, .top-bar ul {
+    background-color: #e61997;
+}
+
+#nav_color {
+    background-color: #e61997;
+}
+
+h1, h2, h3, h4, h5, a {
+    color: white;
+}
+
+li {
+    color: #2B85E2;
+}
+
+a active {
+    color: #2B85E2;
+}
+
+button {
+    color: #2B85E2;
+}
+
+/*Nav*/
+
+#logo {
+    float: left;
+    border: solid;
+    border-color: #0a0a0a;
+    height: 50px;
+    /*width: 10px;*/
+}
+
+
+/*weather form*/
+
+#weather-header {
+    margin-top: 1em;
+}
+
+#weather-input {
+    margin-top: 3em;
+}

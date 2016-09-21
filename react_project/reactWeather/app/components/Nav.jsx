@@ -11,10 +11,11 @@ var Nav = React.createClass({
 
    render: function () {
        return (
-           <div className="top-bar">
+           <div className="top-bar" id="nav_color">
                <div className="top-bar-left">
+                   <img src="http://66.media.tumblr.com/423250121ed5a3ac57dae30244ab611c/tumblr_npin5ueiQT1sdedmbo1_500.gif" id="logo" />
                    <ul className="menu">
-                       <li className="menu-text">::React Weather App::</li>
+                       <li className="menu-text">Reactify Weather</li>
                        <li>
                            <IndexLink to="/" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>Your Weather</IndexLink>
                        </li>
