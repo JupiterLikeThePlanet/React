@@ -1,0 +1,23 @@
+dependencies: \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Executors/RCTJSCExecutor.mm \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Executors/RCTJSCExecutor.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Base/RCTJavaScriptExecutor.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Base/RCTBridge+Private.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Modules/RCTDevMenu.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Profiler/RCTProfile.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Base/RCTPerformanceLogger.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Profiler/RCTJSCProfiler.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Modules/RCTRedBox.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Base/RCTErrorCustomizer.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Modules/RCTSourceCode.h \
+  /Users/jupiterbaudot/ReactNative/albums/node_modules/react-native/React/Executors/RCTJSCWrapper.h
