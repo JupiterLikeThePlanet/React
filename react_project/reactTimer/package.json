@@ -1,13 +1,13 @@
 {
   "name": "boilerplate",
   "version": "1.0.0",
-  "description": "reactTimer",
+  "description": "Simple react app",
   "main": "index.js",
   "scripts": {
     "test": "karma start",
     "start": "node server.js"
   },
-  "author": "Jupiter Baudot",
+  "author": "Andrew Mead",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.9.1",
