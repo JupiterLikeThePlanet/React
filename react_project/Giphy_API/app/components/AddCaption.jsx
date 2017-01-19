@@ -10,10 +10,16 @@ var AddCaption = React.createClass({
 	// getInitialState: function() {
 	// 	caption: this.props.caption
 	// },
+	// onClick={this.updateCaption}
+	onFormChange: function(e) {
+        this.props.onFormChange(this.props.caption, e.target.value);
+    },
 
-    updateCaption(e) {
-      debugger
+    updateCaption: function(e) {
+      // debugger
       e.preventDefault();
+      return this.refs.caption.value
+      // debugger
       // this.props.onCaptionSubmit(this.refs.caption.value);
     },
 
@@ -25,9 +31,9 @@ var AddCaption = React.createClass({
 		return (
 			<div>
 				<p>{caption}</p>
-				<form onSubmit={this.updateCaption}>
-					<input type='text' ref='caption'/>
-					<button> Make Witty Wit It </button>
+				<form>
+					<input type='text' ref='caption' onChange={this.onFormChange}/>
+					
 				</form>
 			</div>
 			)
@@ -38,3 +44,12 @@ var AddCaption = React.createClass({
 
 
 module.exports = AddCaption;
+
+
+				
+// <button> Make Witty Wit It </button>
+				
+				// <form onSubmit={this.onCaptionSubmit}>
+				// 	<input type='text' ref='caption'/>
+				// 	<button> Make Witty Wit It </button>
+				// </form>

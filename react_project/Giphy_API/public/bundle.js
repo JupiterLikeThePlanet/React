@@ -51,14 +51,9 @@
 	var Main = __webpack_require__(159);
 
 	ReactDOM.render(React.createElement(
-		'div',
-		null,
-		React.createElement(
-			'h1',
-			null,
-			'Boilerplate rendered'
-		),
-		React.createElement(Main, { name: 'Bazinga' })
+	  'div',
+	  null,
+	  React.createElement(Main, null)
 	), document.getElementById('app'));
 
 /***/ },
@@ -19770,7 +19765,7 @@
 
 		getDefaultProps: function getDefaultProps() {
 			return {
-				name: 'Main',
+				// name: 'Main',
 				img: 'https://media.tenor.co/images/bf5c091558cad114ab73485814d9c1bc/raw',
 				caption: 'Add a Caption'
 			};
@@ -19778,24 +19773,25 @@
 
 		getInitialState: function getInitialState() {
 			return {
-				name: this.props.name,
+				// name: this.props.name,
 				img: this.props.img,
 				caption: this.props.caption
 			};
 		},
 
-		onButtonPress: function onButtonPress(e) {
-			e.preventDefault();
+		// onButtonPress: function(e) {
+		// 	e.preventDefault();
 
-			var nameVal = this.refs.name.value;
-			// console.log(nameVal);
-			// console.log('pressed');
-			if (nameVal.length > 0) {
-				this.setState({
-					name: nameVal
-				});
-			}
-		},
+		// 	var nameVal = this.refs.name.value
+		// 	// console.log(nameVal);
+		// 	// console.log('pressed');
+		// 	if (nameVal.length > 0) {		
+		// 		this.setState({
+		// 			name: nameVal
+		// 		});
+		// 	}
+
+		// },
 
 		onImageSearch: function onImageSearch(e) {
 			e.preventDefault();
@@ -19814,8 +19810,8 @@
 			}
 		},
 
-		onCaptionSubmit: function onCaptionSubmit(e, caption) {
-
+		onCaptionSubmit: function onCaptionSubmit(e) {
+			// debugger
 			e.preventDefault();
 			// var target_value = e.target.value
 			// console.log('caption america');
@@ -19823,11 +19819,12 @@
 			// debugger
 
 			// var captionVal = this.refs.caption.value
-			var captionVal = caption;
+			// var captionVal = caption
+			var captionVal = this.refs.child.caption.value;
 
 			console.log(captionVal);
 			console.log('captionVal pressed');
-			debugger;
+			// debugger
 
 			if (captionVal.length > 0) {
 				this.setState({
@@ -19836,11 +19833,32 @@
 			};
 
 			console.log("New Caption state: " + this.state.caption);
-			debugger;
+			// debugger
+		},
+
+		// onChildChange: function(caption, childValue){
+		onChildChange: function onChildChange(caption, childValue) {
+			// debugger
+			var newCaption = {};
+			newCaption["caption"] = childValue;
+			// newCaption = childValue;
+			// console.log("newCaption[caption]: " + newCaption[caption])
+			console.log("newCaption: " + newCaption);
+			// debugger
+			// if (newCaption.length()) 
+			this.setState(newCaption);
+
+			// if (newCaption[caption].length > 0) {
+			// 		this.setState(
+			// 			caption: newCaption
+			// 		);
+			// 	};
+
+			// this.setState(newState)
 		},
 
 		render: function render() {
-			console.log(this.state.name);
+			// console.log(this.state.name);
 			console.log(this.state.img);
 			var caption = this.state.caption;
 
@@ -19853,28 +19871,7 @@
 					React.createElement(
 						'h3',
 						null,
-						this.state.name,
-						' Rendered'
-					),
-					React.createElement(
-						'form',
-						{ onSubmit: this.onButtonPress },
-						React.createElement('input', { type: 'text', ref: 'name' }),
-						React.createElement(
-							'button',
-							null,
-							'Press me'
-						)
-					),
-					React.createElement('br', null)
-				),
-				React.createElement(
-					'div',
-					null,
-					React.createElement(
-						'h3',
-						null,
-						'Render an image'
+						'Find a Gif'
 					),
 					React.createElement(
 						'form',
@@ -19887,15 +19884,17 @@
 						)
 					),
 					React.createElement('br', null),
-					React.createElement('img', { src: this.state.img })
+					React.createElement('img', { src: this.state.img, height: '300', width: '450' })
 				),
-				React.createElement(AddCaption, { onCaptionSubmit: this.onCaptionSubmit, caption: caption })
+				React.createElement(AddCaption, { onFormChange: this.onChildChange, caption: caption })
 			);
 		}
 
 	});
 
 	module.exports = Main;
+
+	// <AddCaption onCaptionSubmit={this.onChildChange} caption={caption}/>
 
 /***/ },
 /* 160 */
@@ -21443,13 +21442,18 @@
 		// getInitialState: function() {
 		// 	caption: this.props.caption
 		// },
-
-		updateCaption: function updateCaption(e) {
-			debugger;
-			e.preventDefault();
-			// this.props.onCaptionSubmit(this.refs.caption.value);
+		// onClick={this.updateCaption}
+		onFormChange: function onFormChange(e) {
+			this.props.onFormChange(this.props.caption, e.target.value);
 		},
 
+		updateCaption: function updateCaption(e) {
+			// debugger
+			e.preventDefault();
+			return this.refs.caption.value;
+			// debugger
+			// this.props.onCaptionSubmit(this.refs.caption.value);
+		},
 
 		render: function render() {
 			var caption = this.props.caption;
@@ -21465,19 +21469,21 @@
 				),
 				React.createElement(
 					'form',
-					{ onSubmit: this.updateCaption },
-					React.createElement('input', { type: 'text', ref: 'caption' }),
-					React.createElement(
-						'button',
-						null,
-						' Make Witty Wit It '
-					)
+					null,
+					React.createElement('input', { type: 'text', ref: 'caption', onChange: this.onFormChange })
 				)
 			);
 		}
 	});
 
 	module.exports = AddCaption;
+
+	// <button> Make Witty Wit It </button>
+
+	// <form onSubmit={this.onCaptionSubmit}>
+	// 	<input type='text' ref='caption'/>
+	// 	<button> Make Witty Wit It </button>
+	// </form>
 
 /***/ }
 /******/ ]);

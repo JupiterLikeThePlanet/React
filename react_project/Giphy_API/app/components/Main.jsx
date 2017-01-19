@@ -6,7 +6,7 @@ var AddCaption = require('AddCaption')
 var Main = React.createClass({
 	getDefaultProps: function(){
 		return {
-			name: 'Main',
+			// name: 'Main',
 			img: 'https://media.tenor.co/images/bf5c091558cad114ab73485814d9c1bc/raw',
 			caption: 'Add a Caption'
 		};
@@ -14,25 +14,25 @@ var Main = React.createClass({
 
 	getInitialState: function() {
 		return {
-			name: this.props.name,
+			// name: this.props.name,
 			img: this.props.img,
 			caption: this.props.caption
 		};
 	},
 
-	onButtonPress: function(e) {
-		e.preventDefault();
+	// onButtonPress: function(e) {
+	// 	e.preventDefault();
 
-		var nameVal = this.refs.name.value
-		// console.log(nameVal);
-		// console.log('pressed');
-		if (nameVal.length > 0) {		
-			this.setState({
-				name: nameVal
-			});
-		}
+	// 	var nameVal = this.refs.name.value
+	// 	// console.log(nameVal);
+	// 	// console.log('pressed');
+	// 	if (nameVal.length > 0) {		
+	// 		this.setState({
+	// 			name: nameVal
+	// 		});
+	// 	}
 
-	},
+	// },
 
 	onImageSearch: function(e) {
 		e.preventDefault();
@@ -52,8 +52,8 @@ var Main = React.createClass({
 
 	},
 
-	onCaptionSubmit: function(e, caption){
-		
+	onCaptionSubmit: function(e){
+		// debugger
 		e.preventDefault()
 		// var target_value = e.target.value
 		// console.log('caption america');
@@ -61,11 +61,12 @@ var Main = React.createClass({
 		// debugger
 
 		// var captionVal = this.refs.caption.value
-		var captionVal = caption
+		// var captionVal = caption
+		var captionVal = this.refs.child.caption.value
 
 		console.log(captionVal);
 		console.log('captionVal pressed');
-		debugger
+		// debugger
 
 		if (captionVal.length > 0) {
 				this.setState({
@@ -74,13 +75,34 @@ var Main = React.createClass({
 			};
 
 		console.log("New Caption state: " + this.state.caption);
-		debugger
+		// debugger
 	},
+
+	// onChildChange: function(caption, childValue){
+	onChildChange: function(caption, childValue){
+		// debugger
+    	let newCaption = {};
+    	newCaption["caption"] = childValue;
+    	// newCaption = childValue;
+		// console.log("newCaption[caption]: " + newCaption[caption])
+		console.log("newCaption: " + newCaption)     	
+    	// debugger
+    	// if (newCaption.length()) 
+    	this.setState(newCaption);
+
+		// if (newCaption[caption].length > 0) {
+		// 		this.setState(
+		// 			caption: newCaption
+		// 		);
+		// 	};
+
+      // this.setState(newState)
+    },
 
 
 
 	render: function() {
-		console.log(this.state.name);
+		// console.log(this.state.name);
 		console.log(this.state.img);
 		var caption = this.state.caption; 
 
@@ -89,25 +111,16 @@ var Main = React.createClass({
 			<div>
 
 				<div>
-					<h3>{this.state.name} Rendered</h3>
-					<form onSubmit={this.onButtonPress}>
-						<input type="text" ref="name"/>
-						<button>Press me</button>
-					</form>
-					<br/>
-				</div>
-				
-				<div>
-					<h3>Render an image</h3>
+					<h3>Find a Gif</h3>
 					<form onSubmit={this.onImageSearch}>
 						<input type="text" ref="search_image"/>
 						<button>Giphy</button>
 					</form>
 					<br/>
-					<img src={this.state.img}/>
+					<img src={this.state.img} height="300" width="450"/>
 				</div>
 	
-				<AddCaption onCaptionSubmit={this.onCaptionSubmit} caption={caption}/>
+				<AddCaption onFormChange={this.onChildChange} caption={caption}/>
 			
 			</div>
 
@@ -118,3 +131,6 @@ var Main = React.createClass({
 });
 
 module.exports = Main;
+
+
+// <AddCaption onCaptionSubmit={this.onChildChange} caption={caption}/>
