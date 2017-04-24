@@ -55,11 +55,8 @@ var GiphyForm = React.createClass({
 						<input type="text" ref="search_image"/>
 						<button>Giphy</button>
 					</form>
-					<br/>
-					<form onSubmit={this.onRandomImageUpdate}>
-						<button>Random</button>
-					</form>
 				</div>
+				
 			</div>
 			)
 	}

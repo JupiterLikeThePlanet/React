@@ -1,5 +1,6 @@
 var React = require('react');
 var Giphy = require('Giphy');
+var GiphyForm = require('GiphyForm')
 var AddCaption = require('AddCaption')
 
 
@@ -83,20 +84,12 @@ var Main = React.createClass({
 		// debugger
     	let newCaption = {};
     	newCaption["caption"] = childValue;
-    	// newCaption = childValue;
-		// console.log("newCaption[caption]: " + newCaption[caption])
+
 		console.log("newCaption: " + newCaption)     	
-    	// debugger
-    	// if (newCaption.length()) 
+
     	this.setState(newCaption);
 
-		// if (newCaption[caption].length > 0) {
-		// 		this.setState(
-		// 			caption: newCaption
-		// 		);
-		// 	};
 
-      // this.setState(newState)
     },
 
 
@@ -109,6 +102,10 @@ var Main = React.createClass({
 		return (
 
 			<div>
+
+				<div>
+					<GiphyForm />
+				</div>
 
 				<div>
 					<h3>Find a Gif</h3>

@@ -9,7 +9,9 @@ module.exports = {
         alias: {
             Main: 'app/components/Main.jsx',
             Giphy: 'app/api/Giphy.jsx',
-            AddCaption: 'app/components/AddCaption.jsx'
+            AddCaption: 'app/components/AddCaption.jsx',
+            GiphyForm: 'app/components/GiphyForm.jsx',
+            RandomGiphy: 'app/api/RandomGiphy.jsx'
         },
         extensions: ['', '.js', '.jsx']
     },
