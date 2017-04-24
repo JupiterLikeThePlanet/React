@@ -35,13 +35,8 @@ var Main = React.createClass({
 
 	// },
 
-	onImageSearch: function(e) {
-		e.preventDefault();
+	handleImageSearch: function(imgVal) {
 		var that = this;
-
-		var imgVal = this.refs.search_image.value
-		console.log(imgVal);
-		console.log('onImageSearch pressed');
 
 		if (imgVal.length > 0) {
 			Giphy.getGiphy(imgVal).then(function (url) {
@@ -104,18 +99,9 @@ var Main = React.createClass({
 			<div>
 
 				<div>
-					<GiphyForm />
+					<GiphyForm onImageSearch={this.handleImageSearch} img={this.state.img}/>
 				</div>
 
-				<div>
-					<h3>Find a Gif</h3>
-					<form onSubmit={this.onImageSearch}>
-						<input type="text" ref="search_image"/>
-						<button>Giphy</button>
-					</form>
-					<br/>
-					<img src={this.state.img} height="300" width="450"/>
-				</div>
 	
 				<AddCaption onFormChange={this.onChildChange} caption={caption}/>
 			

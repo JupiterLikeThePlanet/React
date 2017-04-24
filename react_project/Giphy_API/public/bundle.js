@@ -19794,13 +19794,8 @@
 
 		// },
 
-		onImageSearch: function onImageSearch(e) {
-			e.preventDefault();
+		handleImageSearch: function handleImageSearch(imgVal) {
 			var that = this;
-
-			var imgVal = this.refs.search_image.value;
-			console.log(imgVal);
-			console.log('onImageSearch pressed');
 
 			if (imgVal.length > 0) {
 				Giphy.getGiphy(imgVal).then(function (url) {
@@ -19859,28 +19854,7 @@
 				React.createElement(
 					'div',
 					null,
-					React.createElement(GiphyForm, null)
-				),
-				React.createElement(
-					'div',
-					null,
-					React.createElement(
-						'h3',
-						null,
-						'Find a Gif'
-					),
-					React.createElement(
-						'form',
-						{ onSubmit: this.onImageSearch },
-						React.createElement('input', { type: 'text', ref: 'search_image' }),
-						React.createElement(
-							'button',
-							null,
-							'Giphy'
-						)
-					),
-					React.createElement('br', null),
-					React.createElement('img', { src: this.state.img, height: '300', width: '450' })
+					React.createElement(GiphyForm, { onImageSearch: this.handleImageSearch, img: this.state.img })
 				),
 				React.createElement(AddCaption, { onFormChange: this.onChildChange, caption: caption })
 			);
@@ -21435,22 +21409,19 @@
 
 		onImageUpdate: function onImageUpdate(e) {
 			// debugger
+			console.log("ON image update");
 			e.preventDefault();
-			var that = this;
+			// var that = this;
 
 			var imgVal = this.refs.search_image.value;
 			console.log(imgVal);
 			console.log('onImageSearch pressed');
 
-			if (imgVal.length > 0) {
-				Giphy.getGiphy(imgVal).then(function (url) {
-					that.props.onImageSearch(url);
-				});
-			}
+			this.props.onImageSearch(imgVal);
 		},
 
 		onRandomImageUpdate: function onRandomImageUpdate(e) {
-			debugger;
+			// debugger
 			e.preventDefault();
 			var that = this;
 			console.log('Random pressed');
@@ -21470,7 +21441,7 @@
 
 
 		render: function render() {
-			var img = this.props.img;
+			// var img = this.props.img; 
 
 			return React.createElement(
 				'div',
@@ -21492,7 +21463,9 @@
 							null,
 							'Giphy'
 						)
-					)
+					),
+					React.createElement('br', null),
+					React.createElement('img', { src: this.props.img, height: '300', width: '450' })
 				)
 			);
 		}
