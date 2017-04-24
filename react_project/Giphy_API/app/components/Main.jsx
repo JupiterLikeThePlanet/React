@@ -1,7 +1,9 @@
 var React = require('react');
 var Giphy = require('Giphy');
-var GiphyForm = require('GiphyForm')
-var AddCaption = require('AddCaption')
+var GiphyForm = require('GiphyForm');
+var AddCaption = require('AddCaption');
+var RandomGiphy = require('RandomGiphy');
+var RandomGif = require('RandomGif');
 
 
 var Main = React.createClass({
@@ -21,19 +23,6 @@ var Main = React.createClass({
 		};
 	},
 
-	// onButtonPress: function(e) {
-	// 	e.preventDefault();
-
-	// 	var nameVal = this.refs.name.value
-	// 	// console.log(nameVal);
-	// 	// console.log('pressed');
-	// 	if (nameVal.length > 0) {		
-	// 		this.setState({
-	// 			name: nameVal
-	// 		});
-	// 	}
-
-	// },
 
 	handleImageSearch: function(imgVal) {
 		var that = this;
@@ -47,6 +36,21 @@ var Main = React.createClass({
 		}
 
 	},
+
+	handleRandomImageSearch: function(e) {
+		e.preventDefault();
+
+		var that = this;
+		
+		RandomGiphy.getRandomGiphy().then(function (url) {
+			that.setState({
+				img: url
+			});
+		});
+		
+
+	},
+
 
 	onCaptionSubmit: function(e){
 		// debugger
@@ -100,6 +104,10 @@ var Main = React.createClass({
 
 				<div>
 					<GiphyForm onImageSearch={this.handleImageSearch} img={this.state.img}/>
+				</div>
+
+				<div>
+					<RandomGif onRandomSearch={this.handleRandomImageSearch}/>
 				</div>
 
 	

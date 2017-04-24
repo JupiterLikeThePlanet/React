@@ -1,16 +1,26 @@
 var React = require('React');
 
-var randomGif = React.createClass({
+var RandomGif = React.createClass({
 
 	
-		onRandomImageUpdate: function(e) {
-		debugger
-		e.preventDefault();
-		var that = this;
-		console.log('Random pressed');
-		RandomGiphy.getRandomGiphy().then(function (url) {
-			that.props.onRandomSearch(url)
-		});
+	render: function() {
+
+
+			return (
+
+				<div>
+
+					<form onClick={this.props.onRandomSearch}>
+						<button> Random GIF </button>
+					</form>
 			
-	},
-})
+				</div>
+
+			)
+
+		}
+
+});
+
+module.exports = RandomGif;
+

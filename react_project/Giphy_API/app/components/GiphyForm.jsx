@@ -5,29 +5,25 @@ var RandomGiphy = require('RandomGiphy');
 
 var GiphyForm = React.createClass({
 	onImageUpdate: function(e) {
-		// debugger
-		console.log("ON image update")
+
 		e.preventDefault();
-		// var that = this;
 
 		var imgVal = this.refs.search_image.value
-		console.log(imgVal);
-		console.log('onImageSearch pressed');
 
 		this.props.onImageSearch(imgVal);
 
 	},
 
-	onRandomImageUpdate: function(e) {
-		// debugger
-		e.preventDefault();
-		var that = this;
-		console.log('Random pressed');
-		RandomGiphy.getRandomGiphy().then(function (url) {
-			that.props.onRandomSearch(url)
-		});
+	// onRandomImageUpdate: function(e) {
+	// 	// debugger
+	// 	e.preventDefault();
+	// 	var that = this;
+	// 	console.log('Random pressed');
+	// 	RandomGiphy.getRandomGiphy().then(function (url) {
+	// 		that.props.onRandomSearch(url)
+	// 	});
 			
-	},
+	// },
 
 		// var imgVal = this.refs.search_image.value
 		// console.log(imgVal);
