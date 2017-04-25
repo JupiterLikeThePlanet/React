@@ -14,46 +14,30 @@ var GiphyForm = React.createClass({
 
 	},
 
-	// onRandomImageUpdate: function(e) {
-	// 	// debugger
-	// 	e.preventDefault();
-	// 	var that = this;
-	// 	console.log('Random pressed');
-	// 	RandomGiphy.getRandomGiphy().then(function (url) {
-	// 		that.props.onRandomSearch(url)
-	// 	});
-			
-	// },
-
-		// var imgVal = this.refs.search_image.value
-		// console.log(imgVal);
-				
-		// if (imgVal.length > 0) {
-		// 	RandomGiphy.getRandomGiphy(imgVal).then(function (url) {
-		// 		that.props.onRandomSearch(url)
-		// 	});
-		// }
-
 	
 	render: function() {
-		// var img = this.props.img; 
+		var show_div = this.props.embed_url != ""  ? "display: inline" : "display: none"
+		var embed_url = this.props.embed_url
 
 		return (
 
 			<div>
 
-				<div>
-					<h3>Find a Gif</h3>
-					<form onSubmit={this.onImageUpdate}>
-						<input type="text" ref="search_image"/>
-						<button>Giphy</button>
-					</form>
-					<br/>
-					<img src={this.props.img} height="300" width="450"/>
-				</div>
+				<h3>Find a Gif</h3>
+					
+					<div styles= {show_div}>
+						<p>Embed URL: </p>
+					</div>
+					
+				<img src={this.props.img} height="300" width="450"/>
+				<br/>
+				<form onSubmit={this.onImageUpdate}>
+					<input type="text" ref="search_image"/>
+					<button>Giphy</button>
+				</form>
 				
 			</div>
-			)
+		)
 	}
 })
 

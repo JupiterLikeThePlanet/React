@@ -11,6 +11,7 @@ var Main = React.createClass({
 		return {
 			// name: 'Main',
 			img: 'https://media.tenor.co/images/bf5c091558cad114ab73485814d9c1bc/raw',
+			embed_url: "",
 			caption: 'Add a Caption'
 		};
 	},
@@ -19,6 +20,7 @@ var Main = React.createClass({
 		return {
 			// name: this.props.name,
 			img: this.props.img,
+			embed_url: this.props.url,
 			caption: this.props.caption
 		};
 	},
@@ -29,8 +31,11 @@ var Main = React.createClass({
 
 		if (imgVal.length > 0) {
 			Giphy.getGiphy(imgVal).then(function (url) {
+				console.log('url');
+				console.log(url);
 				that.setState({
-					img: url
+					img: url.img,
+					embed_url: url.embed
 				});
 			});
 		}
@@ -94,7 +99,7 @@ var Main = React.createClass({
 
 
 	render: function() {
-		// console.log(this.state.name);
+
 		console.log(this.state.img);
 		var caption = this.state.caption; 
 
@@ -103,7 +108,7 @@ var Main = React.createClass({
 			<div>
 
 				<div>
-					<GiphyForm onImageSearch={this.handleImageSearch} img={this.state.img}/>
+					<GiphyForm onImageSearch={this.handleImageSearch} img={this.state.img} embed_url= {this.state.embed_url}/>
 				</div>
 
 				<div>

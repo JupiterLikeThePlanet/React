@@ -22,10 +22,32 @@ module.exports = {
                 throw new Error(res.data.message);
             }else{
             	var resDataData = res.data.data
+                // console.log('resDataData');
+                // console.log(resDataData)
             	var resDataDataLength = resDataData.length
             	var random = Math.random() * (resDataDataLength - 0) + 0
             	var num = Math.floor(random)
-                return res.data.data[num].images.original.url;
+
+                var giphy_img_and_embed_url = {
+                    img: "",
+                    embed: ""
+                };
+
+                // var giphy_img = res.data.data[num].images.original.url;
+
+                // console.log("res.data.data[num].images.original.url;")
+                // console.log(res.data.data[num].images.original.url);
+                // console.log("res.data.data[num].embed_url")
+                // console.log(res.data.data[num].embed_url)
+
+                giphy_img_and_embed_url.img = res.data.data[num].images.original.url;
+                giphy_img_and_embed_url.embed = res.data.data[num].embed_url
+
+                console.log(giphy_img_and_embed_url);
+
+                // return res.data.data[num].images.original.url;
+
+                return giphy_img_and_embed_url
             }
         }, function (res) {
             throw new Error(res.data.message);

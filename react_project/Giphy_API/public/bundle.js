@@ -19770,6 +19770,7 @@
 			return {
 				// name: 'Main',
 				img: 'https://media.tenor.co/images/bf5c091558cad114ab73485814d9c1bc/raw',
+				embed_url: "",
 				caption: 'Add a Caption'
 			};
 		},
@@ -19778,6 +19779,7 @@
 			return {
 				// name: this.props.name,
 				img: this.props.img,
+				embed_url: this.props.url,
 				caption: this.props.caption
 			};
 		},
@@ -19787,8 +19789,11 @@
 
 			if (imgVal.length > 0) {
 				Giphy.getGiphy(imgVal).then(function (url) {
+					console.log('url');
+					console.log(url);
 					that.setState({
-						img: url
+						img: url.img,
+						embed_url: url.embed
 					});
 				});
 			}
@@ -19844,7 +19849,7 @@
 		},
 
 		render: function render() {
-			// console.log(this.state.name);
+
 			console.log(this.state.img);
 			var caption = this.state.caption;
 
@@ -19854,7 +19859,7 @@
 				React.createElement(
 					'div',
 					null,
-					React.createElement(GiphyForm, { onImageSearch: this.handleImageSearch, img: this.state.img })
+					React.createElement(GiphyForm, { onImageSearch: this.handleImageSearch, img: this.state.img, embed_url: this.state.embed_url })
 				),
 				React.createElement(
 					'div',
@@ -19899,10 +19904,32 @@
 	                throw new Error(res.data.message);
 	            } else {
 	                var resDataData = res.data.data;
+	                // console.log('resDataData');
+	                // console.log(resDataData)
 	                var resDataDataLength = resDataData.length;
 	                var random = Math.random() * (resDataDataLength - 0) + 0;
 	                var num = Math.floor(random);
-	                return res.data.data[num].images.original.url;
+
+	                var giphy_img_and_embed_url = {
+	                    img: "",
+	                    embed: ""
+	                };
+
+	                // var giphy_img = res.data.data[num].images.original.url;
+
+	                // console.log("res.data.data[num].images.original.url;")
+	                // console.log(res.data.data[num].images.original.url);
+	                // console.log("res.data.data[num].embed_url")
+	                // console.log(res.data.data[num].embed_url)
+
+	                giphy_img_and_embed_url.img = res.data.data[num].images.original.url;
+	                giphy_img_and_embed_url.embed = res.data.data[num].embed_url;
+
+	                console.log(giphy_img_and_embed_url);
+
+	                // return res.data.data[num].images.original.url;
+
+	                return giphy_img_and_embed_url;
 	            }
 	        }, function (res) {
 	            throw new Error(res.data.message);
@@ -21421,53 +21448,38 @@
 			this.props.onImageSearch(imgVal);
 		},
 
-		// onRandomImageUpdate: function(e) {
-		// 	// debugger
-		// 	e.preventDefault();
-		// 	var that = this;
-		// 	console.log('Random pressed');
-		// 	RandomGiphy.getRandomGiphy().then(function (url) {
-		// 		that.props.onRandomSearch(url)
-		// 	});
-
-		// },
-
-		// var imgVal = this.refs.search_image.value
-		// console.log(imgVal);
-
-		// if (imgVal.length > 0) {
-		// 	RandomGiphy.getRandomGiphy(imgVal).then(function (url) {
-		// 		that.props.onRandomSearch(url)
-		// 	});
-		// }
-
-
 		render: function render() {
-			// var img = this.props.img; 
+			var show_div = this.props.embed_url != "" ? "display: inline" : "display: none";
+			var embed_url = this.props.embed_url;
 
 			return React.createElement(
 				'div',
 				null,
 				React.createElement(
-					'div',
+					'h3',
 					null,
+					'Find a Gif'
+				),
+				React.createElement(
+					'div',
+					{ styles: show_div },
 					React.createElement(
-						'h3',
+						'p',
 						null,
-						'Find a Gif'
-					),
+						'Embed URL: '
+					)
+				),
+				React.createElement('img', { src: this.props.img, height: '300', width: '450' }),
+				React.createElement('br', null),
+				React.createElement(
+					'form',
+					{ onSubmit: this.onImageUpdate },
+					React.createElement('input', { type: 'text', ref: 'search_image' }),
 					React.createElement(
-						'form',
-						{ onSubmit: this.onImageUpdate },
-						React.createElement('input', { type: 'text', ref: 'search_image' }),
-						React.createElement(
-							'button',
-							null,
-							'Giphy'
-						)
-					),
-					React.createElement('br', null),
-					React.createElement('img', { src: this.props.img, height: '300', width: '450' })
+						'button',
+						null,
+						'Giphy'
+					)
 				)
 			);
 		}
