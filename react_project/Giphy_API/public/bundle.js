@@ -50,6 +50,13 @@
 	var ReactDOM = __webpack_require__(158);
 	var Main = __webpack_require__(159);
 
+	// Loads foundation
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"style!css!foundation-sites/dist/foundation.min.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	$(document).foundation();
+
+	// Loads CSS
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"style!css!sass!applicationStyles\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
 	ReactDOM.render(React.createElement(
 	  'div',
 	  null,
