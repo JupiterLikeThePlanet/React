@@ -21449,7 +21449,7 @@
 		},
 
 		render: function render() {
-			var show_div = this.props.embed_url != "" ? "display: inline" : "display: none";
+			var show_div = this.props.embed_url != "" ? "display: none" : "display: inline";
 			var embed_url = this.props.embed_url;
 
 			return React.createElement(
