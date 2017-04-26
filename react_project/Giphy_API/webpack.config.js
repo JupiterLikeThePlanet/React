@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = {
     entry: [
         'script!jquery/dist/jquery.min.js',
@@ -25,7 +27,8 @@ module.exports = {
             AddCaption: 'app/components/AddCaption.jsx',
             GiphyForm: 'app/components/GiphyForm.jsx',
             RandomGiphy: 'app/api/RandomGiphy.jsx',
-            RandomGif: 'app/components/RandomGif.jsx'
+            RandomGif: 'app/components/RandomGif.jsx',
+            applicationStyles: 'app/styles/app.scss'
         },
         extensions: ['', '.js', '.jsx']
     },
