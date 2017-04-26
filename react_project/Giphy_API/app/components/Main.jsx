@@ -11,7 +11,6 @@ var RandomGif = require('RandomGif');
 var Main = React.createClass({
 	getDefaultProps: function(){
 		return {
-			// name: 'Main',
 			img: 'https://media.tenor.co/images/bf5c091558cad114ab73485814d9c1bc/raw',
 			embed_url: "",
 			caption: 'Add a Caption'
@@ -20,9 +19,8 @@ var Main = React.createClass({
 
 	getInitialState: function() {
 		return {
-			// name: this.props.name,
 			img: this.props.img,
-			embed_url: this.props.url,
+			embed_url: this.props.embed_url,
 			caption: this.props.caption
 		};
 	},
@@ -102,7 +100,7 @@ var Main = React.createClass({
 
 	render: function() {
 
-		console.log(this.state.img);
+		console.log(this.state.embed_url);
 		var caption = this.state.caption; 
 
 		return (

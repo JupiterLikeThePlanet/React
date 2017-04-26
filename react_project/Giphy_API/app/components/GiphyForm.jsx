@@ -16,8 +16,11 @@ var GiphyForm = React.createClass({
 
 	
 	render: function() {
-		var show_div = this.props.embed_url != ""  ? "display: none" : "display: inline" 
+
 		var embed_url = this.props.embed_url
+		console.log("embed_url")
+		console.log(embed_url)
+		var visibility = this.props.embed_url === ""  ? "hide_div" : "show_div" 
 
 		return (
 
@@ -25,8 +28,8 @@ var GiphyForm = React.createClass({
 
 				<h3>Find a Gif</h3>
 					
-					<div styles= {show_div}>
-						<p>Embed URL: </p>
+					<div className={visibility}>
+						<p>Embed URL: {embed_url}</p>
 					</div>
 					
 				<img src={this.props.img} height="300" width="450"/>
