@@ -105,7 +105,7 @@ var Main = React.createClass({
 
 		return (
 
-			<div>
+			<div id="main_container">
 
 				<div>
 					<GiphyForm onImageSearch={this.handleImageSearch} img={this.state.img} embed_url= {this.state.embed_url}/>
@@ -115,9 +115,10 @@ var Main = React.createClass({
 					<RandomGif onRandomSearch={this.handleRandomImageSearch}/>
 				</div>
 
-	
-				<AddCaption onFormChange={this.onChildChange} caption={caption}/>
-			
+				<div>
+					<AddCaption onFormChange={this.onChildChange} caption={caption}/>
+				</div>
+
 			</div>
 
 		)

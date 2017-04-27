@@ -1,3 +1,7 @@
+$purple: #6B3767;
+$black: #140212;
+$white: #f8f8f8;
+$green: #89d41a;
 
 // hide div
 .hide_div {
@@ -7,6 +11,38 @@
 //show div
 .show_div {
 	display: inline;
+}
+
+body {
+	background-color: $black;
+}
+
+button {
+	color: $white;
+	background-color: $green;
+	border-radius: 5%;
+	margin: 10px;
+}
+
+p {
+	color: $white;
+}
+
+h3 {
+	color: $white;
+}
+
+#main_container {
+	margin: auto;
+	margin-top: 4em;
+    width: 50%;
+    border: 3px $green;
+    padding: 10px;
+    background-color: $purple;
+}
+
+#embed_url {
+	background-color: $green;
 }
 
 // body {

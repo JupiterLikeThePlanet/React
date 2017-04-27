@@ -28,16 +28,20 @@ var GiphyForm = React.createClass({
 
 				<h3>Find a Gif</h3>
 					
-					<div className={visibility}>
+					<div className={visibility} id="embed_url">
 						<p>Embed URL: {embed_url}</p>
 					</div>
 					
 				<img src={this.props.img} height="300" width="450"/>
 				<br/>
-				<form onSubmit={this.onImageUpdate}>
-					<input type="text" ref="search_image"/>
-					<button>Giphy</button>
-				</form>
+				<div className="input-group">
+					<form  onSubmit={this.onImageUpdate}>
+						<input className="input-group-field" type="text" ref="search_image"/>
+						<div className="input-group-button">
+							<button>Giphy</button>
+						</div>
+					</form>
+				</div>
 				
 			</div>
 		)
