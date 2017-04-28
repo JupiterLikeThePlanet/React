@@ -20,8 +20,9 @@ body {
 button {
 	color: $white;
 	background-color: $green;
-	border-radius: 5%;
+	border-radius: 25px;
 	margin: 10px;
+    padding: 4px;
 }
 
 p {
@@ -39,10 +40,17 @@ h3 {
     border: 3px $green;
     padding: 10px;
     background-color: $purple;
+    border-radius: 25px;
 }
 
 #embed_url {
 	background-color: $green;
+}
+
+#main_img {
+	display: block;
+    margin: 0 auto;
+	margin-bottom: 2em;
 }
 
 // body {

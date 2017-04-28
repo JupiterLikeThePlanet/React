@@ -31,8 +31,10 @@ var GiphyForm = React.createClass({
 					<div className={visibility} id="embed_url">
 						<p>Embed URL: {embed_url}</p>
 					</div>
-					
-				<img src={this.props.img} height="300" width="450"/>
+				
+				<div id="main_img">
+					<img src={this.props.img} height="300" width="450"/>
+				</div>
 				<br/>
 				<div className="input-group">
 					<form  onSubmit={this.onImageUpdate}>
