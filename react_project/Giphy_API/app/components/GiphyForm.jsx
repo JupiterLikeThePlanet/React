@@ -40,7 +40,7 @@ var GiphyForm = React.createClass({
 					<form  onSubmit={this.onImageUpdate}>
 						<input className="input-group-field" type="text" ref="search_image"/>
 						<div className="input-group-button">
-							<button>Giphy</button>
+							<button id="search_button">Search</button>
 						</div>
 					</form>
 				</div>

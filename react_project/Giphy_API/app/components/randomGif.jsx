@@ -8,10 +8,10 @@ var RandomGif = React.createClass({
 
 			return (
 
-				<div>
+				<div id="random_gif_button">
 
 					<form onClick={this.props.onRandomSearch}>
-						<button> Random GIF </button>
+						<button> Random </button>
 					</form>
 			
 				</div>
