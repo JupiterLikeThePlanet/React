@@ -28,7 +28,8 @@ module.exports = {
             GiphyForm: 'app/components/GiphyForm.jsx',
             RandomGiphy: 'app/api/RandomGiphy.jsx',
             RandomGif: 'app/components/RandomGif.jsx',
-            applicationStyles: 'app/styles/app.scss'
+            applicationStyles: 'app/styles/app.scss',
+            EmbedUrl: "app/components/EmbedUrl"
         },
         extensions: ['', '.js', '.jsx']
     },

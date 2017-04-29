@@ -43,7 +43,7 @@ module.exports = {
                 giphy_img_and_embed_url.img = res.data.data[num].images.original.url;
                 giphy_img_and_embed_url.embed = res.data.data[num].embed_url
 
-                console.log(giphy_img_and_embed_url);
+                // console.log(giphy_img_and_embed_url);
 
                 // return res.data.data[num].images.original.url;
 

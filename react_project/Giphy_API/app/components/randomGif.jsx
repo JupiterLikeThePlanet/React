@@ -2,6 +2,16 @@ var React = require('React');
 
 var RandomGif = React.createClass({
 
+	onRandomUpdate: function(e) {
+
+	e.preventDefault();
+
+	var imgVal = this.refs.search_image.value
+
+	this.props.onRandomSearch(imgVal);
+
+	},
+
 	
 	render: function() {
 

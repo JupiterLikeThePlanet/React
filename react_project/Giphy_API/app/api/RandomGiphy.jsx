@@ -25,11 +25,25 @@ module.exports = {
             // if (res.data.cod && res.data.meta.message){
             //     throw new Error(res.data.meta.msg);
             }else{
-            	// var resDataData = res.data.data
-            	// var resDataDataLength = resDataData.length
-            	// var random = Math.random() * (resDataDataLength - 0) + 0
-            	// var num = Math.floor(random)
-                return res.data.data.image_url;
+
+
+                var giphy_img_and_embed_url = {
+                    img: "",
+                    embed: ""
+                };
+
+                // console.log("random data")
+                // console.log(res.data.data);
+                giphy_img_and_embed_url.img = res.data.data.image_url;
+
+                // giphy_img_and_embed_url.embed = res.data.data.image_url;
+                giphy_img_and_embed_url.embed = res.data.data.image_original_url
+
+                // console.log("Random info");
+                // console.log(res.data.data)
+                // console.log(giphy_img_and_embed_url);
+                return giphy_img_and_embed_url
+                // return res.data.data.image_url;
             }
         }, function (res) {
         	// throw new Error(res.data.meta.msg);

@@ -4,6 +4,7 @@ var GiphyForm = require('GiphyForm');
 var AddCaption = require('AddCaption');
 var RandomGiphy = require('RandomGiphy');
 var RandomGif = require('RandomGif');
+var EmbedUrl = require('EmbedUrl');
 
 
 
@@ -31,8 +32,8 @@ var Main = React.createClass({
 
 		if (imgVal.length > 0) {
 			Giphy.getGiphy(imgVal).then(function (url) {
-				console.log('url');
-				console.log(url);
+				// console.log('url');
+				// console.log(url);
 				that.setState({
 					img: url.img,
 					embed_url: url.embed
@@ -48,10 +49,13 @@ var Main = React.createClass({
 		var that = this;
 		
 		RandomGiphy.getRandomGiphy().then(function (url) {
-			that.setState({
-				img: url
-			});
+				that.setState({
+					img: url.img,
+					embed_url: url.embed
+				});
 		});
+
+
 		
 
 	},
@@ -100,8 +104,10 @@ var Main = React.createClass({
 
 	render: function() {
 
-		console.log(this.state.embed_url);
+		// console.log(this.state.embed_url);
 		var caption = this.state.caption; 
+
+
 
 		return (
 
@@ -112,10 +118,12 @@ var Main = React.createClass({
 			
 
 			
-				<RandomGif onRandomSearch={this.handleRandomImageSearch}/>
-			
+				<RandomGif onRandomSearch={this.handleRandomImageSearch} img={this.state.img} embed_url= {this.state.embed_url}/>
 
-			
+
+				<EmbedUrl embed_url={this.state.embed_url}/>
+				
+					
 				<AddCaption onFormChange={this.onChildChange} caption={caption}/>
 			
 

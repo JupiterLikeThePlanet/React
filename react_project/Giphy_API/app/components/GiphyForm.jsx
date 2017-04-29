@@ -18,8 +18,8 @@ var GiphyForm = React.createClass({
 	render: function() {
 
 		var embed_url = this.props.embed_url
-		console.log("embed_url")
-		console.log(embed_url)
+		// console.log("embed_url")
+		// console.log(embed_url)
 		var visibility = this.props.embed_url === ""  ? "hide_div" : "show_div" 
 
 		return (
